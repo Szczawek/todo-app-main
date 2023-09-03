@@ -1,0 +1,248 @@
+::after,
+::before,
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --border-bgc: hsl(237, 14%, 26%);
+  --body-bgc: hsl(235, 21%, 11%);
+  --todo-bgc: hsl(235, 24%, 19%);
+  --content-shadow: hsl(240, 17%, 6%);
+  --todo-checked: hsl(233, 14%, 35%);
+  --todo-unchecked: hsl(234, 39%, 85%);
+  --operator: hsl(234, 11%, 52%);
+  --operator-hover: hsl(236, 33%, 92%);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+img,
+button,
+span {
+  display: block;
+}
+img {
+  max-width: 100%;
+}
+button {
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+input {
+  background-color: transparent;
+  outline: none;
+  display: block;
+  border: none;
+}
+body {
+  background-color: var(--body-bgc);
+  font-family: "Josefin Sans", sans-serif;
+}
+
+picture img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+}
+
+main {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  top: 0;
+}
+
+/* main element */
+.container {
+  display: grid;
+  padding-top: 3rem;
+  grid-template-rows: repeat(4, max-content);
+  row-gap: 1.8rem;
+  width: 85vw;
+  max-width: 600px;
+}
+
+.title-page {
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  letter-spacing: 1rem;
+  font-size: clamp(1.9rem, 2.5vw, 3rem);
+}
+
+.todo-creator,
+.todo {
+  padding: 1.3rem 1rem;
+}
+
+.content,
+.todo-creator,
+.mark-btns {
+  border-radius: 6px;
+  background-color: var(--todo-bgc);
+}
+
+/* container to create new todo */
+.todo-creator {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1rem;
+}
+
+.todo-creator label {
+  display: grid;
+  align-items: center;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1rem;
+}
+
+.todo-creator input {
+  font-size: clamp(0.7rem, 1.6vw, 1.1rem);
+  color: var(--todo-unchecked);
+}
+.todo-creator input::placeholder {
+  color: inherit;
+}
+
+/* content */
+.content {
+  position: relative;
+  display: grid;
+}
+.content::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: calc(100% - 2.5rem);
+  z-index: -1;
+  box-shadow: 0 0 2rem 1rem var(--content-shadow);
+  top: 2.2rem;
+}
+.todo {
+  border-bottom: 1px solid var(--border-bgc);
+  display: grid;
+  column-gap: 1rem;
+  align-items: center;
+  grid-template-columns: max-content 1fr max-content;
+}
+.todo button {
+  opacity: 0;
+  transition: opacity 400ms;
+}
+.todo:hover button {
+  opacity: 1;
+}
+/* todo text */
+.todo-text {
+  cursor: pointer;
+  font-size: clamp(0.7rem, 2.2vw, 1.1rem);
+  word-break: break-all;
+}
+.todo-text.active {
+  text-decoration: line-through;
+  color: var(--todo-checked);
+}
+
+.todo-text.unactive {
+  color: var(--todo-unchecked);
+}
+/* input checkbox, button to add a new task */
+
+.circle {
+  cursor: pointer;
+  position: relative;
+  width: 1.5rem;
+  aspect-ratio: 1/1;
+  padding: 0.4rem;
+  border-radius: 50%;
+  border: 2px solid var(--border-bgc);
+}
+
+.circle:checked {
+  content: url(images/icon-check.svg);
+  background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  border: none;
+}
+.content input {
+  appearance: none;
+}
+
+/* operation buttons */
+
+.content-operator {
+  position: relative;
+  color: var(--operator);
+  display: grid;
+  padding: 1.2rem;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 1rem;
+}
+.content-operator button {
+  transition: color 300ms;
+}
+.content-operator button:hover {
+  color: var(--operator-hover);
+}
+.content-operator > button {
+  text-align: right;
+}
+.mark-btns {
+  justify-content: center;
+  column-gap: 1rem;
+  display: flex;
+}
+
+.mark-btns button {
+  font-weight: 700;
+}
+
+button[class="current"] {
+  color: hsl(220, 98%, 61%);
+}
+
+.info-drop {
+  padding-bottom: 1rem;
+  color: var(--operator);
+  text-align: center;
+  font-size: 0.8rem;
+  transform: translateY(3rem);
+}
+
+@media (width < 600px) {
+  .content-operator {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Don't ask about it. I hate the people who created this arrangement */
+  .mark-btns {
+    padding: 1rem;
+    width: 85vw;
+    position: absolute;
+    transform: translateY(4.4rem);
+  }
+  .mark-btns::before {
+    content: "";
+    position: absolute;
+    height: 3rem;
+    border-radius: 6px;
+    width: 100%;
+    top: 0.1rem;
+    z-index: -999;
+    box-shadow: 0 0 2rem var(--content-shadow);
+  }
+  .info-drop {
+    transform: translateY(4rem);
+  }
+}

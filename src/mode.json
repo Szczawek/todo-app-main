@@ -1,0 +1,22 @@
+{
+  "dark": {
+    "--border-bgc": "hsl(237, 14%, 26%)",
+    "--body-bgc": "hsl(235, 21%, 11%)",
+    "--content-shadow": "hsl(240, 17%, 6%)",
+    "--todo-bgc": "hsl(235, 24%, 19%)",
+    "--todo-checked": "hsl(233, 14%, 35%)",
+    "--todo-unchecked": "hsl(234, 39%, 85%)",
+    "--operator": "hsl(234, 11%, 52%)",
+    "--operator-hover": "hsl(236, 33%, 92%)"
+  },
+  "light": {
+    "--border-bgc": "hsl(233, 11%, 84%)",
+    "--body-bgc": "hsl(0, 0%, 98%)",
+    "--todo-bgc": "white",
+    "--content-shadow": "hsla(240, 3%, 73%, 0.753)",
+    "--todo-checked": "hsl(236, 33%, 92%)",
+    "--todo-unchecked": "hsl(235, 19%, 35%)",
+    "--operator": "hsl(236, 9%, 61%)",
+    "--operator-hover": "hsl(235, 19%, 35%)"
+  }
+}
